@@ -1,9 +1,12 @@
 {
   "name": "modern-checklist-monorepo",
   "version": "1.0.0",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "install-all": "npm install --prefix back && npm install --prefix front",
-    "build": "npm install --prefix front && npm run build --prefix front",
-    "start": "node back/src/server.js"
+    "postinstall": "npm install --prefix back && npm install --prefix front",
+    "build": "npm run build --prefix front",
+    "start": "npm install --prefix back && npm start --prefix back"
   }
 }
