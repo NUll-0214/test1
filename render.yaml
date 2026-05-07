@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: modern-checklist-back
+    runtime: node
+    plan: free
+    buildCommand: cd back && npm install
+    startCommand: cd back && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    region: oregon
+
+  - type: static
+    name: modern-checklist-front
+    runtime: static
+    plan: free
+    buildCommand: cd front && npm install && npm run build
+    staticPublishPath: front/dist
+    region: oregon
