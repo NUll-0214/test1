@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Plus, RefreshCcw, Search, Trash2 } from 'lucide-react';
 import TodoItem from './components/TodoItem';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000';
+const API_BASE = import.meta.env.VITE_API_BASE || 'https://webtest1-bu0d.onrender.com';
 
 const FILTERS = [
   { label: '전체', value: 'all' },
