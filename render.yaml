@@ -1,19 +1,11 @@
 services:
   - type: web
-    name: modern-checklist-back
+    name: modern-checklist
     runtime: node
-    buildCommand: npm install
+    plan: free
+    buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-    dir: ./back
-    autoDeploy: true
-
-  - type: static
-    name: modern-checklist-front
-    runtime: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
-    dir: ./front
     autoDeploy: true

@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -125,9 +126,14 @@ app.delete('/todos', (req, res) => {
   res.status(400).json({ error: '유효한 쿼리를 전달해주세요. completed=true 를 사용하세요.' });
 });
 
-app.get('/', (req, res) => {
-  res.send({ status: 'Modern Checklist API is running' });
-});
+if (process.env.NODE_ENV === 'production') {
+  const staticPath = path.join(__dirname, '../../front/dist');
+  app.use(express.static(staticPath));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(staticPath, 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
